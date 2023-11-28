@@ -9,6 +9,7 @@ function initApplication() {
     video.addEventListener("play", () => generateLandmarks());
 }
 
+//setup the camera
 async function setupCamera() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         throw new Error("Webcam not available");
@@ -27,15 +28,12 @@ async function setupCamera() {
     console.log(video.height);
 }
 
-// const featureExtractor = ml5.featureExtractor('MobileNet', {
-//     numLabels: 2
-// }, modelLoaded);
-
-// When the model is loaded
+//show when the model is loaded
 function modelLoaded() {
     console.log('Model Loaded!');
 }
 
+//generate the landmarks on the face
 function generateLandmarks() {
     const canvas = faceapi.createCanvasFromMedia(video);
     const videoElement = document.querySelector(".video-wrapper");
@@ -61,23 +59,23 @@ function generateLandmarks() {
     }, 1000 * 4);
 }
 
-const k = 3; //k can be any integer
+//kNear
+const k = 3;
 const machine = new kNear(k);
-
-console.log(machine);
 
 let predictionsArray = [];
 
+//button variables
 let sad = document.getElementById('sad');
 let neutral = document.getElementById('neutral');
 let happy = document.getElementById('happy');
-
 let save = document.getElementById('save');
+
 save.addEventListener("click", (event) => saveModel(event));
 
 let buttonsArray = [sad, neutral, happy, save];
 
-
+//button handlers
 function buttonSadHandler(e) {
     e.preventDefault()
     machine.learn(predictionsArray,'sad')
@@ -96,6 +94,7 @@ function buttonHappyHandler(e) {
     console.log('happy')
 }
 
+//prediction
 function logData(detections) {
     predictionsArray = [];
 
@@ -118,6 +117,7 @@ function logData(detections) {
     log.innerHTML = prediction;
 }
 
+//save model
 function saveModel(e){
     e.preventDefault()
     buttonsArray.forEach(button => {

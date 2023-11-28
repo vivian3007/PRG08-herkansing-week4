@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FACE API met landmarks</title>
+    <script defer src="face-api/js/face-api.min.js"></script>
+    <script defer src="https://unpkg.com/ml5@0.6.1/dist/ml5.min.js"></script>
+    <script src="face-api/js/knear.js"></script>
+    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<h1>Emotion detector</h1>
+<h3>Make your own emotion detector. This way you know what kind of emotion the person on the screen is feeling and then you know how to respond to them!</h3>
+<p>Instructions: Please smile at the camera and press the 'Happy' button. Do the same for the sad and neutral emotions with both of these buttons. At last, press 'save'.</p>
+<div class="video-wrapper">
+    <video id="video" width="720" height="405" autoplay muted></video>
+</div>
+<h2>The emotion is:</h2>
+<div id="array"></div>
+<div class="buttons">
+    <button id="sad">Sad</button>
+    <button id="neutral">Neutral</button>
+    <button id="happy">Happy</button>
+    <button id="save">Save</button>
+</div>
+</body>
+</html>
